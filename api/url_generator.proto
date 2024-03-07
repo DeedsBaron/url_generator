@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package url_generator;
+
+option go_package = "github.com/DeedsBaron/url_generator/pkg/url_generator;url_generator";
+
+import "google/api/annotations.proto";
+
+service UrlGenerator {
+  // Создает новую ссылку
+  rpc CreateUrl (CreateUrlReq) returns (CreateUrlResponse) {
+    option (google.api.http) = {
+      post: "/v1/url/create"
+      body: "*"
+    };
+  }
+  // Возвращает по ссылке исходную строку
+  rpc GetStringByUrl (GetStringByUrlRequest) returns (GetStringByUrlResponse) {
+    option (google.api.http) = {
+      get: "/v1/url/get/{id}"
+    };
+  }
+}
+
+message CreateUrlReq {
+  string input_string = 1;
+}
+
+message CreateUrlResponse {
+  string url = 1;
+}
+
+message GetStringByUrlRequest {
+  string id = 1;
+}
+
+message GetStringByUrlResponse {
+  string result_string = 1;
+}

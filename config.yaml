@@ -1,0 +1,3 @@
+grpcPort: 50051
+httpPort: 8081
+urlLen: 25
